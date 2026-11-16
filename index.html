@@ -1018,7 +1018,7 @@ Phone: {phone} · Email: {email}</div></div>
     if(scroll!==false)window.scrollTo(0,0);
     if(name==="coaching")observe();
   }
-  function route(){show((location.hash||"").replace("#","")||"coaching")}
+  function route(){var n=(location.hash||"").replace("#","")||"coaching";var ok=false;try{ok=!!sessionStorage.getItem("vs_app")}catch(err){}if((n==="book"||n==="confirmed")&&!ok)n="apply";show(n)}
   document.addEventListener("click",function(e){
     var a=e.target.closest("[data-go]"); if(!a)return;
     e.preventDefault(); var t=a.getAttribute("data-go");
