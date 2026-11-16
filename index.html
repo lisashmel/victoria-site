@@ -1054,7 +1054,7 @@ Phone: {phone} · Email: {email}</div></div>
     if(first){first.scrollIntoView({behavior:"smooth",block:"center"});return}
     var data={};new FormData(form).forEach(function(v,k){data[k]=v});
     try{sessionStorage.setItem("vs_app",JSON.stringify(data))}catch(err){}
-    /* TODO: send `data` to CRM / webhook here */
+    fetch("https://script.google.com/macros/s/AKfycbxsLhAv3sCQKr3w0Li2IP0bFN1SkRpGpEoBRyOkctQrlwdqIgx1j0csgDT8Esy7lF6O/exec",{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(Object.assign({submitted_at:new Date().toISOString(),source:"victoriadatecoach.com"},data))}).catch(function(){});
     location.hash = data.ready==="no" ? "resources" : "book";
   });
 
