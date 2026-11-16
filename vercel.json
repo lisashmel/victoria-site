@@ -1,1 +1,1 @@
-{"redirects":[{"destination":"/","permanent":true,"source":"/sessions"}]}
+{"cleanUrls":true,"redirects":[{"destination":"/","permanent":true,"source":"/sessions"}]}
