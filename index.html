@@ -976,67 +976,17 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
   </div></section>
 </main>
 
-<!-- ================= EMAIL COPY (internal) ================= -->
-<main id="v-emails" class="view">
-  <section class="page"><div class="wrap narrow">
-    <div class="eyebrow">Internal · Funnel copy</div>
-    <h1>Emails &amp; SMS</h1>
-    <p class="lead">Copy blocks for the booking tool. Not linked from the public pages. Plus: instant booking alert to the team so Lisa can send a personal message by hand.</p>
-
-    <div class="mail"><div class="mh"><b>Email 1 · On booking</b><div>Subject: You're booked with Chloe, here's what to expect</div></div><div class="mb">Hi {first_name},
-
-Your private call is confirmed for {date} at {time} ({timezone}).
-
-You'll be meeting Chloe, Victoria's Client Director. [Chloe photo]
-
-Chloe leads every application call. In 30 minutes she'll look at where you are and where you want to be, and tell you straight whether Victoria's coaching is the right fit for you.
-
-To be clear: this isn't a coaching session and it isn't a call with Victoria. If you decide to start, you'll work with Victoria personally.
-
-Before the call:
-— Be somewhere private, camera on
-— Think about the one outcome you want most in the next 90 days
-
-Your link: {meeting_link}
-Need to reschedule? {reschedule_link}
-
-Everything you share stays confidential.
-
-Team Victoria</div></div>
-
-    <div class="mail"><div class="mh"><b>Email 2 · 1 hour before</b><div>Subject: Your call with Chloe starts in 1 hour</div></div><div class="mb">Hi {first_name},
-
-Quick reminder: your private call with Chloe starts at {time} ({timezone}).
-
-Join here: {meeting_link}
-
-Find a quiet spot and have your camera on. See you soon.
-
-Team Victoria</div></div>
-
-    <div class="mail"><div class="mh"><b>No-show · Email / SMS</b><div>One line</div></div><div class="mb">Hi {first_name}, we missed you today. Grab a new time here: {reschedule_link}</div></div>
-
-    <div class="mail"><div class="mh"><b>Internal alert · To Lisa on every new booking</b><div>Subject: NEW CALL BOOKED: {first_name}, {date} {time}</div></div><div class="mb">New booking. Send a personal message now.
-
-Name: {name} · {age}, {city} · {work}
-Situation: {situation} · for {howlong}
-90-day outcome: {outcome}
-Urgency: {urgency}/10 · Ready to invest: {ready}
-Phone: {phone} · Email: {email}</div></div>
-    <button class="back" data-go="coaching">← Back to site</button>
-  </div></section>
-</main>
 
 <footer><div class="wrap">
   <div>© Victoria Savitskiy · Private dating coaching for men · <a href="https://www.instagram.com/victoria.datecoach/">@victoria.datecoach</a></div>
-  <div><a href="https://victoriadatecoach.com/privacypolicy">Privacy</a><a href="https://victoriadatecoach.com/terms">Terms</a><a href="#emails" data-go="emails">Team: email copy</a></div>
+  <div><a href="https://victoriadatecoach.com/privacypolicy">Privacy</a><a href="https://victoriadatecoach.com/terms">Terms</a></div>
 </div></footer>
 
 <div class="mcta"><a class="btn block" href="#apply" data-go="apply">Apply for private coaching <span class="ar">→</span></a></div>
 
 <script>
 (function(){
-  var views=["coaching","apply","book","confirmed","resources","emails"];
+  var views=["coaching","apply","book","confirmed","resources"];
   function show(name,scroll){
     if(views.indexOf(name)<0)name="coaching";
     views.forEach(function(v){document.getElementById("v-"+v).classList.toggle("on",v===name)});
