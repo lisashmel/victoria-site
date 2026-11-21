@@ -564,6 +564,26 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
 .ans h3{font-size:20px;margin-bottom:12px;color:var(--ink)}
 .ans p{color:var(--mute);font-size:16px}
 @media(max-width:800px){.ans-grid{grid-template-columns:1fr}.ans{padding:28px 22px}}
+
+/* vertical video player */
+.vsl-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);grid-template-areas:"h v" "c v";column-gap:72px;align-items:center}
+.vsl-grid .vsl-head{grid-area:h;text-align:left;margin:0;align-self:end;max-width:560px}
+.vsl-grid .vsl-head .eyebrow{justify-content:flex-start}
+.vsl-grid .vsl-head .eyebrow::before{display:block}
+.vsl-grid .vsl-head .lead{margin:0}
+.vsl-grid .vsl-frame{grid-area:v;max-width:400px;width:100%;margin:0}
+.vsl-grid .vsl-cta{grid-area:c;text-align:left;margin-top:34px;align-self:start}
+.vsl-grid .vsl-cta .cta-note{justify-content:flex-start}
+@media(max-width:860px){.vsl-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"h" "v" "c";row-gap:30px}.vsl-grid .vsl-head,.vsl-grid .vsl-cta{text-align:center;margin:0 auto}.vsl-grid .vsl-head .eyebrow,.vsl-grid .vsl-cta .cta-note{justify-content:center}.vsl-grid .vsl-head .eyebrow::before{display:none}.vsl-grid .vsl-frame{margin:0 auto;max-width:420px}.vsl-grid .vsl-cta{margin-top:0}}
+.vplayer{position:relative;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(201,163,106,.3)}
+.vplayer video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
+.vp-cover{position:absolute;inset:0;border:0;padding:0;cursor:pointer;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.55));display:flex;align-items:center;justify-content:center;transition:opacity .25s}
+.vp-cover:hover .play{transform:scale(1.06)}
+.vp-lab{position:absolute;left:0;right:0;bottom:22px;text-align:center;font:600 12.5px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#fff}
+.vplayer.playing .vp-cover{opacity:0;pointer-events:none}
+.conf-video{margin:46px 0 10px}
+.conf-video .vplayer{max-width:380px}
+@media(max-width:600px){.conf-video .vplayer{max-width:100%}}
 </style>
 </head>
 <body class="coaching">
@@ -588,22 +608,21 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
       <p class="hsub">Private coaching for successful men who built everything except their dating life, and are done guessing.</p>
       <a class="btn" href="#apply" data-go="apply">Apply for private coaching <span class="ar">→</span></a>
       <div class="cta-note"><span>2-minute application</span><span>100% confidential</span><span>Not every man is accepted</span></div>
-      <button class="scrollcue" type="button" onclick="document.getElementById('vsl').scrollIntoView({behavior:'smooth'})">Watch the 5-min video ↓</button>
+      <button class="scrollcue" type="button" onclick="document.getElementById('vsl').scrollIntoView({behavior:'smooth'})">Watch the video ↓</button>
     </div>
   </section>
 
   <section class="vsl" id="vsl">
-    <div class="wrap">
+    <div class="wrap vsl-grid">
       <div class="vsl-head reveal">
         <div class="eyebrow">Watch this first</div>
         <h2>You built everything.<br><span class="serif">Except this.</span></h2>
-        <p class="lead">Why successful men struggle with dating, and the exact system I use to fix it. Five minutes.</p>
+        <p class="lead">Why successful men struggle with dating, and the exact system I use to fix it. Under three minutes.</p>
       </div>
       <div class="vsl-frame reveal">
-        <div class="video" role="button" aria-label="Play video">
-          <span class="vtag">VSL · placeholder embed</span>
-          <div class="play"></div>
-          <div class="vlabel"><span>Victoria · Private coaching for men</span><em>5 min</em></div>
+        <div class="vplayer" data-label="Watch · 2:34">
+          <video src="media/vsl.mp4" poster="media/vsl-poster.jpg" preload="metadata" playsinline controls></video>
+          <button class="vp-cover" type="button" aria-label="Play video: Watch this first"><span class="play"></span><span class="vp-lab">Watch · 2:34</span></button>
         </div>
       </div>
       <div class="vsl-cta reveal">
@@ -620,7 +639,7 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
     </div>
     <div class="tst-rail">
       <button class="tnav prev" type="button" aria-label="Previous">←</button>
-      <div class="track" id="track"><article class="tcard"><div class="tc-top"><div class="av">DN</div><div><b>Daniel</b><span>41 · New York</span></div></div><div class="stars">★★★★★</div><p class="tc-txt">I kept dating the same woman in a different body. Victoria saw the pattern in our first session, the one I had repeated for six years. Eight months later I am in a relationship I actually chose, not one I fell into.</p><button class="more" type="button">show more</button><div class="tc-date">The Private Blueprint</div></article><article class="tcard vcard" role="button" aria-label="Play client video"><span class="vtag">Client video · placeholder</span><div class="play"></div><div class="vc-cap"><b>Client name</b><span>Attorney · 42</span></div></article><article class="tcard"><div class="tc-top"><div class="av">MA</div><div><b>Michael</b><span>38 · Austin</span></div></div><div class="stars">★★★★★</div><p class="tc-txt">She tells you the truth, calmly and without drama. Half of what I was doing wrong I could not see at all. Once I saw it, the dates changed completely.</p><button class="more" type="button">show more</button><div class="tc-date">The Private Blueprint</div></article><article class="tcard"><div class="tc-top"><div class="av">AC</div><div><b>Andrew</b><span>35 · Chicago</span></div></div><div class="stars">★★★★★</div><p class="tc-txt">I came in with one problem: my profile attracted nobody I wanted. Four sessions later the matches were different, and so were the conversations.</p><button class="more" type="button">show more</button><div class="tc-date">The Reset</div></article><article class="tcard vcard" role="button" aria-label="Play client video"><span class="vtag">Client video · placeholder</span><div class="play"></div><div class="vc-cap"><b>Client name</b><span>Physician · 39</span></div></article><article class="tcard"><div class="tc-top"><div class="av">JM</div><div><b>James</b><span>44 · Miami</span></div></div><div class="stars">★★★★★</div><p class="tc-txt">No games, no tricks. She teaches you how women actually experience you, and how to lead without pretending to be someone else.</p><button class="more" type="button">show more</button><div class="tc-date">The Private Blueprint</div></article><article class="tcard vcard" role="button" aria-label="Play client video"><span class="vtag">Client video · placeholder</span><div class="play"></div><div class="vc-cap"><b>Client name</b><span>Founder · 36</span></div></article><article class="tcard"><div class="tc-top"><div class="av">RS</div><div><b>Robert</b><span>47 · San Francisco</span></div></div><div class="stars">★★★★★</div><p class="tc-txt">Worth it for the filtering alone. I stopped wasting months on women who were never right for me, and I can spot it in two dates now.</p><button class="more" type="button">show more</button><div class="tc-date">The Inner Circle</div></article></div>
+      <div class="track" id="track"><article class="tcard"><div class="tc-top"><div class="av">JM</div><div><b>Client name</b><span>Founder · 38</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard vcard" role="button" aria-label="Play client video"><span class="vtag">Client video · placeholder</span><div class="play"></div><div class="vc-cap"><b>Client name</b><span>Attorney · 42</span></div></article><article class="tcard"><div class="tc-top"><div class="av">DK</div><div><b>Client name</b><span>Engineer · 34</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard"><div class="tc-top"><div class="av">AR</div><div><b>Client name</b><span>Investor · 45</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard vcard" role="button" aria-label="Play client video"><span class="vtag">Client video · placeholder</span><div class="play"></div><div class="vc-cap"><b>Client name</b><span>Physician · 39</span></div></article><article class="tcard"><div class="tc-top"><div class="av">TS</div><div><b>Client name</b><span>Executive · 47</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard vcard" role="button" aria-label="Play client video"><span class="vtag">Client video · placeholder</span><div class="play"></div><div class="vc-cap"><b>Client name</b><span>Founder · 36</span></div></article><article class="tcard"><div class="tc-top"><div class="av">MB</div><div><b>Client name</b><span>Surgeon · 41</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article></div>
       <button class="tnav next" type="button" aria-label="Next">→</button>
     </div>
     <div class="wrap" style="text-align:center;margin-top:44px">
@@ -867,9 +886,7 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
   <section class="page"><div class="wrap narrow">
     <div class="eyebrow">Application received · Final step</div>
     <h1>Book your<br><span class="serif">private call.</span></h1>
-    <p class="lead">Watch this short video first. It explains exactly what happens on the call.</p>
-
-    <div class="video" style="margin-top:30px"><span class="vtag">2-min video · placeholder embed</span><div class="play"></div><div class="vlabel"><span>What this call is</span><em>2 min</em></div></div>
+    <p class="lead">Pick a time for your private 30-minute call with Chloe, my Client Director.</p>
 
     <div class="host">
       <div class="photo" data-initial="C"><span>Chloe · photo</span></div>
@@ -912,6 +929,15 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
       <button class="btn ghost" type="button" onclick="this.textContent='Apple / Outlook (.ics) — wire up in booking tool'">+ Apple / Outlook</button>
     </div>
 
+    <div class="conf-video">
+      <div class="eyebrow">A message from Victoria</div>
+      <p class="lead" style="margin:14px 0 22px">Watch this before your call. Under a minute.</p>
+      <div class="vplayer">
+        <video src="media/after-booking.mp4" poster="media/after-booking-poster.jpg" preload="metadata" playsinline controls></video>
+        <button class="vp-cover" type="button" aria-label="Play message from Victoria"><span class="play"></span><span class="vp-lab">Watch · 0:46</span></button>
+      </div>
+    </div>
+
     <div class="host">
       <div class="photo" data-initial="C"><span>Chloe · photo</span></div>
       <div>
@@ -927,7 +953,7 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
 
     <div class="eyebrow" style="margin-top:10px">Before the call</div>
     <div class="steps3">
-      <div><b>01</b><p>Watch the 5-minute video on the main page if you haven't yet.</p></div>
+      <div><b>01</b><p>Watch Victoria's short message above if you haven't yet.</p></div>
       <div><b>02</b><p>Be somewhere private, with camera on and 30 minutes clear.</p></div>
       <div><b>03</b><p>Think about the one outcome you want most. Chloe will start there.</p></div>
     </div>
@@ -944,7 +970,7 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
       <a href="https://www.instagram.com/victoria.datecoach/"><div class="k">Free · Daily</div><h3>Follow @victoria.datecoach</h3><p>What women notice, what they never say, and what to change. Every day.</p></a>
       <a href="#" onclick="return false"><div class="k">Free guide · Placeholder</div><h3>The Lead System, in brief</h3><p>The three parts of attraction successful men get wrong. Link your lead magnet here.</p></a>
       <a href="#" onclick="return false"><div class="k">Free video · Placeholder</div><h3>Why your dates go nowhere</h3><p>The most common mistake high-achieving men make on a first date.</p></a>
-      <a href="#" data-go="coaching"><div class="k">Watch again</div><h3>The 5-minute video</h3><p>Rewatch how the coaching works and who it's for.</p></a>
+      <a href="#" data-go="coaching"><div class="k">Watch again</div><h3>Watch the video again</h3><p>Rewatch how the coaching works and who it's for.</p></a>
     </div>
     <div style="margin-top:40px"><a class="btn" href="#apply" data-go="apply">Ready now? Apply again <span class="ar">→</span></a></div>
   </div></section>
@@ -1003,7 +1029,7 @@ Phone: {phone} · Email: {email}</div></div>
 
 <footer><div class="wrap">
   <div>© Victoria Savitskiy · Private dating coaching for men · <a href="https://www.instagram.com/victoria.datecoach/">@victoria.datecoach</a></div>
-  <div><a href="/privacypolicy">Privacy</a><a href="/terms">Terms</a><a href="#emails" data-go="emails">Team: email copy</a></div>
+  <div><a href="https://victoriadatecoach.com/privacypolicy">Privacy</a><a href="https://victoriadatecoach.com/terms">Terms</a><a href="#emails" data-go="emails">Team: email copy</a></div>
 </div></footer>
 
 <div class="mcta"><a class="btn block" href="#apply" data-go="apply">Apply for private coaching <span class="ar">→</span></a></div>
@@ -1018,7 +1044,7 @@ Phone: {phone} · Email: {email}</div></div>
     if(scroll!==false)window.scrollTo(0,0);
     if(name==="coaching")observe();
   }
-  function route(){var n=(location.hash||"").replace("#","")||"coaching";var ok=false;try{ok=!!sessionStorage.getItem("vs_app")}catch(err){}if((n==="book"||n==="confirmed")&&!ok)n="apply";show(n)}
+  function route(){show((location.hash||"").replace("#","")||"coaching")}
   document.addEventListener("click",function(e){
     var a=e.target.closest("[data-go]"); if(!a)return;
     e.preventDefault(); var t=a.getAttribute("data-go");
@@ -1054,7 +1080,7 @@ Phone: {phone} · Email: {email}</div></div>
     if(first){first.scrollIntoView({behavior:"smooth",block:"center"});return}
     var data={};new FormData(form).forEach(function(v,k){data[k]=v});
     try{sessionStorage.setItem("vs_app",JSON.stringify(data))}catch(err){}
-    fetch("https://script.google.com/macros/s/AKfycbxsLhAv3sCQKr3w0Li2IP0bFN1SkRpGpEoBRyOkctQrlwdqIgx1j0csgDT8Esy7lF6O/exec",{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(Object.assign({submitted_at:new Date().toISOString(),source:"victoriadatecoach.com"},data))}).catch(function(){});
+    /* TODO: send `data` to CRM / webhook here */
     location.hash = data.ready==="no" ? "resources" : "book";
   });
 
@@ -1083,6 +1109,16 @@ Phone: {phone} · Email: {email}</div></div>
   track.addEventListener("pointerdown",hold);track.addEventListener("mouseenter",function(){paused=true});track.addEventListener("mouseleave",function(){paused=false});
   setInterval(function(){if(paused||!document.getElementById("v-coaching").classList.contains("on"))return;
     if(track.scrollLeft+track.clientWidth>=track.scrollWidth-5)track.scrollTo({left:0,behavior:"smooth"});else step(1)},4500);
+
+  /* video players */
+  document.querySelectorAll(".vplayer").forEach(function(p){
+    var v=p.querySelector("video"),c=p.querySelector(".vp-cover");
+    v.removeAttribute("controls");
+    c.addEventListener("click",function(){document.querySelectorAll(".vplayer video").forEach(function(o){if(o!==v)o.pause()});v.controls=true;var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});p.classList.add("playing")});
+    v.addEventListener("play",function(){p.classList.add("playing")});
+    v.addEventListener("ended",function(){p.classList.remove("playing");v.controls=false;v.currentTime=0});
+  });
+  window.addEventListener("hashchange",function(){document.querySelectorAll(".vplayer video").forEach(function(o){o.pause()})});
   window.addEventListener("scroll",function(){document.body.classList.toggle("scrolled",window.scrollY>window.innerHeight*.9)},{passive:true});
   route();observe();
 })();
