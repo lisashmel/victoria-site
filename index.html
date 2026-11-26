@@ -486,23 +486,24 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
 
-/* hero v2 (split layout: text + portrait photo) */
-.hero2{position:relative;min-height:calc(100svh - 68px);display:flex;align-items:center;padding:110px 0 90px;overflow:hidden;border-bottom:0;background:radial-gradient(60% 75% at 50% 35%,#3a332c 0%,#211e1b 45%,#0f0e0d 100%)}
-.hero2-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;align-items:center;width:100%}
-.hero2-in{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;text-align:left}
-.hero-photo{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/4;background-image:var(--hero-photo);background-size:cover;background-position:center 20%;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(201,163,106,.25)}
+/* hero v2 (Blaine-style full-bleed) */
+.hero2{position:relative;min-height:calc(100svh - 68px);display:flex;align-items:center;justify-content:center;text-align:center;padding:110px 0 90px;overflow:hidden;border-bottom:0}
+.hero-bg{position:absolute;inset:0;background-color:#1a1817;background-image:var(--hero-photo,radial-gradient(60% 75% at 50% 35%,#3a332c 0%,#211e1b 45%,#0f0e0d 100%));background-size:cover;background-position:center 20%;transform:scale(1.04);animation:kb 18s ease-out forwards}
+@keyframes kb{to{transform:scale(1)}}
+.ph-note{position:absolute;top:22px;left:50%;transform:translateX(-50%);font:600 10px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);border:1px dashed rgba(255,255,255,.18);padding:8px 10px;white-space:nowrap}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,.35) 0%,rgba(10,10,11,.25) 35%,rgba(10,10,11,.78) 72%,var(--bg) 100%)}
+.hero2-in{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
 .pill{display:inline-flex;align-items:center;gap:12px;background:rgba(243,239,232,.95);color:#141414;border-radius:999px;padding:10px 20px 10px 10px;font:600 14px/1 var(--sans);box-shadow:0 10px 30px rgba(0,0,0,.35)}
 .pill .dots{display:flex}
 .pill .dots i{width:30px;height:30px;border-radius:50%;background:#0A0A0B;color:var(--acc);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:11px;border:2px solid #F3EFE8;margin-left:-8px}
 .pill .dots i:first-child{margin-left:0}
-.hero2 .hi{font-size:clamp(38px,4.8vw,72px);line-height:1;margin-top:34px;color:var(--acc2)}
-.hero2 h1{font-size:clamp(40px,5.6vw,88px);line-height:.92;color:var(--acc);margin:6px 0 26px;text-shadow:0 4px 40px rgba(0,0,0,.4)}
-.hsub{font-size:clamp(18px,2vw,22px);color:#EDE8E0;max-width:560px;margin:0 0 34px;text-shadow:0 2px 20px rgba(0,0,0,.6)}
-.hero2 .cta-note{justify-content:flex-start}
+.hero2 .hi{font-size:clamp(46px,8vw,104px);line-height:1;margin-top:34px;color:var(--acc2)}
+.hero2 h1{font-size:clamp(44px,7.2vw,118px);line-height:.92;color:var(--acc);margin:6px 0 26px;text-shadow:0 4px 40px rgba(0,0,0,.4)}
+.hsub{font-size:clamp(18px,2vw,22px);color:#EDE8E0;max-width:640px;margin:0 auto 34px;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+.hero2 .cta-note{justify-content:center}
 .scrollcue{margin-top:44px;background:none;border:0;color:var(--mute);font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
 .scrollcue:hover{color:var(--acc)}
-@media(max-width:900px){.hero2-grid{grid-template-columns:minmax(0,1fr);gap:36px}.hero-photo{max-width:520px}.hero2{padding:80px 0 60px;min-height:calc(100svh - 68px)}}
-@media(max-width:700px){.hero2 h1{white-space:normal;font-size:clamp(52px,15vw,72px)}.pill{font-size:12px;padding:8px 14px 8px 8px}.pill .dots i{width:24px;height:24px;font-size:9px}}
+@media(max-width:700px){.hero2 h1{white-space:normal;font-size:clamp(52px,15vw,72px)}.hero2{padding:80px 0 60px;min-height:calc(100svh - 68px)}.pill{font-size:12px;padding:8px 14px 8px 8px}.pill .dots i{width:24px;height:24px;font-size:9px}.ph-note{display:none}}
 .vsl{padding-top:40px}
 .vsl-head{text-align:center;max-width:760px;margin:0 auto 40px}
 .vsl-head .eyebrow{justify-content:center}.vsl-head .eyebrow::before{display:none}
@@ -583,6 +584,30 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
 .conf-video{margin:46px 0 10px}
 .conf-video .vplayer{max-width:380px}
 @media(max-width:600px){.conf-video .vplayer{max-width:100%}}
+
+/* real photos: never stretched, always cropped to frame */
+.hero-bg{background:#0A0A0B;animation:none;transform:none}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
+.ab-img{padding:0;position:relative}
+.ab-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
+@media(min-width:901px){
+  .hero2{justify-content:flex-start;text-align:left;min-height:min(calc(100svh - 68px),860px)}
+  .hero-bg{left:auto;right:0;width:min(50%,720px)}
+  .hero-img{object-position:50% 12%}
+  .hero-shade{background:linear-gradient(90deg,var(--bg) 0%,var(--bg) calc(100% - min(50%,720px)),rgba(10,10,11,.6) calc(100% - min(50%,720px) + 60px),rgba(10,10,11,0) calc(100% - min(50%,720px) + 260px)),linear-gradient(0deg,var(--bg) 0%,rgba(10,10,11,0) 22%)}
+  .hero2-in{align-items:flex-start;max-width:var(--max);width:100%}
+  .hero2-in > *{max-width:min(560px,40vw)}
+  .hero2 .hi{font-size:clamp(40px,4.2vw,66px);margin-top:30px}
+  .hero2 h1{font-size:clamp(50px,5.4vw,90px)}
+  .hero2 .hsub{margin:0 0 34px}
+  .hero2 .cta-note{justify-content:flex-start}
+}
+@media(max-width:900px){
+  .hero2{align-items:flex-end;padding:0 0 46px;min-height:calc(100svh - 68px)}
+  .hero-img{object-position:50% 12%}
+  .hero-shade{background:linear-gradient(180deg,rgba(10,10,11,.15) 0%,rgba(10,10,11,0) 30%,rgba(10,10,11,.72) 58%,var(--bg) 82%)}
+  .hero2 .pill{margin-top:50vh}
+}
 </style>
 </head>
 <body class="coaching">
@@ -598,17 +623,16 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
 <main id="v-coaching" class="view on">
 
   <section class="hero2">
-    <div class="wrap hero2-grid">
-      <div class="hero2-in">
-        <div class="pill"><span class="dots"><i>◆</i><i>◆</i><i>◆</i></span>Gottman-trained · Certified coach · 1:1 only</div>
-        <div class="hi serif">I'm Victoria, your</div>
-        <h1>Dating coach for men</h1>
-        <p class="hsub">Private coaching for successful men who built everything except their dating life, and are done guessing.</p>
-        <a class="btn" href="#apply" data-go="apply">Apply for private coaching <span class="ar">→</span></a>
-        <div class="cta-note"><span>2-minute application</span><span>100% confidential</span><span>Not every man is accepted</span></div>
-        <button class="scrollcue" type="button" onclick="document.getElementById('vsl').scrollIntoView({behavior:'smooth'})">Watch the video ↓</button>
-      </div>
-      <div class="hero-photo" role="img" aria-label="Victoria Savitskiy, dating coach for men" style="--hero-photo:url('media/victoria-hero.jpg')"></div>
+    <div class="hero-bg"><img class="hero-img" src="media/hero.jpg" alt="Victoria Savitskiy, private dating coach for men, walking in the city" fetchpriority="high"></div>
+    <div class="hero-shade"></div>
+    <div class="wrap hero2-in">
+      <div class="pill"><span class="dots"><i>◆</i><i>◆</i><i>◆</i></span>Gottman-trained · Certified coach · 1:1 only</div>
+      <div class="hi serif">I'm Victoria, your</div>
+      <h1>Dating coach for men</h1>
+      <p class="hsub">Private coaching for successful men who built everything except their dating life, and are done guessing.</p>
+      <a class="btn" href="#apply" data-go="apply">Apply for private coaching <span class="ar">→</span></a>
+      <div class="cta-note"><span>2-minute application</span><span>100% confidential</span><span>Not every man is accepted</span></div>
+      <button class="scrollcue" type="button" onclick="document.getElementById('vsl').scrollIntoView({behavior:'smooth'})">Watch the video ↓</button>
     </div>
   </section>
 
@@ -639,7 +663,7 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
     </div>
     <div class="tst-rail">
       <button class="tnav prev" type="button" aria-label="Previous">←</button>
-      <div class="track" id="track"><article class="tcard"><div class="tc-top"><div class="av">DN</div><div><b>Daniel</b><span>41 · New York</span></div></div><div class="stars">★★★★★</div><p class="tc-txt">I kept dating the same woman in a different body. Victoria saw the pattern in our first session, the one I had repeated for six years. Eight months later I am in a relationship I actually chose, not one I fell into.</p><button class="more" type="button">show more</button><div class="tc-date">The Private Blueprint</div></article><article class="tcard"><div class="tc-top"><div class="av">MA</div><div><b>Michael</b><span>38 · Austin</span></div></div><div class="stars">★★★★★</div><p class="tc-txt">She tells you the truth, calmly and without drama. Half of what I was doing wrong I could not see at all. Once I saw it, the dates changed completely.</p><button class="more" type="button">show more</button><div class="tc-date">The Private Blueprint</div></article><article class="tcard"><div class="tc-top"><div class="av">AC</div><div><b>Andrew</b><span>35 · Chicago</span></div></div><div class="stars">★★★★★</div><p class="tc-txt">I came in with one problem: my profile attracted nobody I wanted. Four sessions later the matches were different, and so were the conversations.</p><button class="more" type="button">show more</button><div class="tc-date">The Reset</div></article><article class="tcard"><div class="tc-top"><div class="av">JM</div><div><b>James</b><span>44 · Miami</span></div></div><div class="stars">★★★★★</div><p class="tc-txt">No games, no tricks. She teaches you how women actually experience you, and how to lead without pretending to be someone else.</p><button class="more" type="button">show more</button><div class="tc-date">The Private Blueprint</div></article><article class="tcard"><div class="tc-top"><div class="av">RS</div><div><b>Robert</b><span>47 · San Francisco</span></div></div><div class="stars">★★★★★</div><p class="tc-txt">Worth it for the filtering alone. I stopped wasting months on women who were never right for me, and I can spot it in two dates now.</p><button class="more" type="button">show more</button><div class="tc-date">The Inner Circle</div></article></div>
+      <div class="track" id="track"><article class="tcard"><div class="tc-top"><div class="av">JM</div><div><b>Client name</b><span>Founder · 38</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard vcard" role="button" aria-label="Play client video"><span class="vtag">Client video · placeholder</span><div class="play"></div><div class="vc-cap"><b>Client name</b><span>Attorney · 42</span></div></article><article class="tcard"><div class="tc-top"><div class="av">DK</div><div><b>Client name</b><span>Engineer · 34</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard"><div class="tc-top"><div class="av">AR</div><div><b>Client name</b><span>Investor · 45</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard vcard" role="button" aria-label="Play client video"><span class="vtag">Client video · placeholder</span><div class="play"></div><div class="vc-cap"><b>Client name</b><span>Physician · 39</span></div></article><article class="tcard"><div class="tc-top"><div class="av">TS</div><div><b>Client name</b><span>Executive · 47</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard vcard" role="button" aria-label="Play client video"><span class="vtag">Client video · placeholder</span><div class="play"></div><div class="vc-cap"><b>Client name</b><span>Founder · 36</span></div></article><article class="tcard"><div class="tc-top"><div class="av">MB</div><div><b>Client name</b><span>Surgeon · 41</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article></div>
       <button class="tnav next" type="button" aria-label="Next">→</button>
     </div>
     <div class="wrap" style="text-align:center;margin-top:44px">
@@ -660,7 +684,7 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
         <a class="btn" href="#apply" data-go="apply">Apply for private coaching <span class="ar">→</span></a>
       </div>
       <div class="ab-photo reveal">
-        <div class="ab-img" style="--about-photo:url('media/victoria-portrait.jpg')"></div>
+        <div class="ab-img"><img src="media/about.jpg" alt="Victoria Savitskiy, dating coach for successful men" loading="lazy"></div>
         <div class="ab-cap"><span class="serif">Dating isn't your problem.<br>Guessing is.</span></div>
       </div>
     </div>
@@ -976,17 +1000,67 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
   </div></section>
 </main>
 
+<!-- ================= EMAIL COPY (internal) ================= -->
+<main id="v-emails" class="view">
+  <section class="page"><div class="wrap narrow">
+    <div class="eyebrow">Internal · Funnel copy</div>
+    <h1>Emails &amp; SMS</h1>
+    <p class="lead">Copy blocks for the booking tool. Not linked from the public pages. Plus: instant booking alert to the team so Lisa can send a personal message by hand.</p>
+
+    <div class="mail"><div class="mh"><b>Email 1 · On booking</b><div>Subject: You're booked with Chloe, here's what to expect</div></div><div class="mb">Hi {first_name},
+
+Your private call is confirmed for {date} at {time} ({timezone}).
+
+You'll be meeting Chloe, Victoria's Client Director. [Chloe photo]
+
+Chloe leads every application call. In 30 minutes she'll look at where you are and where you want to be, and tell you straight whether Victoria's coaching is the right fit for you.
+
+To be clear: this isn't a coaching session and it isn't a call with Victoria. If you decide to start, you'll work with Victoria personally.
+
+Before the call:
+— Be somewhere private, camera on
+— Think about the one outcome you want most in the next 90 days
+
+Your link: {meeting_link}
+Need to reschedule? {reschedule_link}
+
+Everything you share stays confidential.
+
+Team Victoria</div></div>
+
+    <div class="mail"><div class="mh"><b>Email 2 · 1 hour before</b><div>Subject: Your call with Chloe starts in 1 hour</div></div><div class="mb">Hi {first_name},
+
+Quick reminder: your private call with Chloe starts at {time} ({timezone}).
+
+Join here: {meeting_link}
+
+Find a quiet spot and have your camera on. See you soon.
+
+Team Victoria</div></div>
+
+    <div class="mail"><div class="mh"><b>No-show · Email / SMS</b><div>One line</div></div><div class="mb">Hi {first_name}, we missed you today. Grab a new time here: {reschedule_link}</div></div>
+
+    <div class="mail"><div class="mh"><b>Internal alert · To Lisa on every new booking</b><div>Subject: NEW CALL BOOKED: {first_name}, {date} {time}</div></div><div class="mb">New booking. Send a personal message now.
+
+Name: {name} · {age}, {city} · {work}
+Situation: {situation} · for {howlong}
+90-day outcome: {outcome}
+Urgency: {urgency}/10 · Ready to invest: {ready}
+Phone: {phone} · Email: {email}</div></div>
+    <button class="back" data-go="coaching">← Back to site</button>
+  </div></section>
+</main>
 
 <footer><div class="wrap">
   <div>© Victoria Savitskiy · Private dating coaching for men · <a href="https://www.instagram.com/victoria.datecoach/">@victoria.datecoach</a></div>
-  <div><a href="https://victoriadatecoach.com/privacypolicy">Privacy</a><a href="https://victoriadatecoach.com/terms">Terms</a></div>
+  <div><a href="https://victoriadatecoach.com/privacypolicy">Privacy</a><a href="https://victoriadatecoach.com/terms">Terms</a><a href="#emails" data-go="emails">Team: email copy</a></div>
 </div></footer>
 
 <div class="mcta"><a class="btn block" href="#apply" data-go="apply">Apply for private coaching <span class="ar">→</span></a></div>
 
 <script>
 (function(){
-  var views=["coaching","apply","book","confirmed","resources"];
+  var views=["coaching","apply","book","confirmed","resources","emails"];
   function show(name,scroll){
     if(views.indexOf(name)<0)name="coaching";
     views.forEach(function(v){document.getElementById("v-"+v).classList.toggle("on",v===name)});
