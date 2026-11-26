@@ -174,7 +174,7 @@
      "name": "How do I start dating coaching with Victoria Savitskiy?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Apply on victoriadatecoach.com with a short 2-minute application. If it's a fit, you book a free 30-minute call with her Client Director, who assesses your situation and recommends the right format. Once you start, you work with Victoria personally."
+      "text": "Apply on victoriadatecoach.com with a short 2-minute application. If it's a fit, you book a free, private 30-minute call to look at your situation and the right coaching format."
      }
     },
     {
@@ -608,6 +608,45 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
   .hero-shade{background:linear-gradient(180deg,rgba(10,10,11,.15) 0%,rgba(10,10,11,0) 30%,rgba(10,10,11,.72) 58%,var(--bg) 82%)}
   .hero2 .pill{margin-top:50vh}
 }
+
+/* ---- Nov 26 call ---- */
+[hidden]{display:none!important}
+/* primary CTAs: dark orange, high contrast (white on #C4501A = 4.6:1) */
+:root{--cta:#C4501A;--cta2:#DA6128}
+.btn{background:var(--cta);color:#fff;box-shadow:0 8px 28px rgba(196,80,26,.35)}
+.btn:hover{background:var(--cta2);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:none}
+.btn.ghost:hover{background:transparent;color:var(--acc)}
+.prog.feat .badge{background:var(--acc)}
+/* testimonials hidden until real reviews are pasted in: remove data-placeholder from the section */
+.tst[data-placeholder]{display:none}
+/* application: one question per screen */
+#v-apply .page{padding-top:44px}
+#v-apply h1{font-size:clamp(40px,6vw,64px);margin:16px 0 12px}
+.stepper{margin:30px 0 0}
+.st-top{display:flex;justify-content:space-between;font:600 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.st-top #stPct{color:var(--acc)}
+.stepper .progress{margin:0;height:4px}
+.stepper .progress i{background:var(--cta);transition:width .4s ease}
+#appForm{margin-top:22px}
+#appForm .q{display:none;padding:40px 36px 34px;border:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,rgba(201,163,106,.06),transparent 60%),var(--card);min-height:300px}
+#appForm .q.on{display:block;animation:qIn .38s cubic-bezier(.2,.7,.2,1)}
+#appForm .q.on.back{animation:qBack .38s cubic-bezier(.2,.7,.2,1)}
+@keyframes qIn{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
+@keyframes qBack{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){#appForm .q.on,#appForm .q.on.back{animation:none}}
+#appForm .q .ql{display:block;font:400 clamp(28px,4.2vw,40px)/1.08 var(--disp);text-transform:uppercase;letter-spacing:.01em;margin-bottom:22px}
+#appForm .q .hint{margin:-10px 0 14px}
+#appForm .q input[type=text],#appForm .q input[type=email],#appForm .q input[type=tel],#appForm .q input[type=number],#appForm .q select,#appForm .q textarea{font-size:19px;padding:20px 20px}
+#appForm .q select{cursor:pointer}
+#appForm .q .choice span{padding:20px 20px 20px 52px;font-size:17px}
+#appForm .q .scale span{height:58px}
+.st-nav{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:22px 0 0}
+.st-nav .btn{min-width:200px}
+.st-back{background:none;border:0;color:var(--mute);font:600 15px/1 var(--sans);cursor:pointer;padding:14px 4px}
+.st-back:hover{color:var(--ink)}
+#appForm .privacy{margin-top:26px}
+@media(max-width:600px){#appForm .q{padding:30px 20px 26px;min-height:0}.st-nav .btn{flex:1;min-width:0}#appForm .q .scale{grid-template-columns:repeat(5,1fr)}}
 </style>
 </head>
 <body class="coaching">
@@ -656,14 +695,14 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
     </div>
   </section>
 
-  <section class="tst" id="testimonials">
+  <section class="tst" id="testimonials" data-placeholder>
     <div class="wrap reveal" style="text-align:center">
       <div class="eyebrow" style="justify-content:center">Testimonials</div>
       <h2 style="margin-top:18px">What men are saying<br><span class="serif">about Victoria</span></h2>
     </div>
     <div class="tst-rail">
       <button class="tnav prev" type="button" aria-label="Previous">←</button>
-      <div class="track" id="track"><article class="tcard"><div class="tc-top"><div class="av">JM</div><div><b>Client name</b><span>Founder · 38</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard vcard" role="button" aria-label="Play client video"><span class="vtag">Client video · placeholder</span><div class="play"></div><div class="vc-cap"><b>Client name</b><span>Attorney · 42</span></div></article><article class="tcard"><div class="tc-top"><div class="av">DK</div><div><b>Client name</b><span>Engineer · 34</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard"><div class="tc-top"><div class="av">AR</div><div><b>Client name</b><span>Investor · 45</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard vcard" role="button" aria-label="Play client video"><span class="vtag">Client video · placeholder</span><div class="play"></div><div class="vc-cap"><b>Client name</b><span>Physician · 39</span></div></article><article class="tcard"><div class="tc-top"><div class="av">TS</div><div><b>Client name</b><span>Executive · 47</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard vcard" role="button" aria-label="Play client video"><span class="vtag">Client video · placeholder</span><div class="play"></div><div class="vc-cap"><b>Client name</b><span>Founder · 36</span></div></article><article class="tcard"><div class="tc-top"><div class="av">MB</div><div><b>Client name</b><span>Surgeon · 41</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article></div>
+      <div class="track" id="track"><article class="tcard"><div class="tc-top"><div class="av">JM</div><div><b>Client name</b><span>Founder · 38</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard"><div class="tc-top"><div class="av">DK</div><div><b>Client name</b><span>Engineer · 34</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard"><div class="tc-top"><div class="av">AR</div><div><b>Client name</b><span>Investor · 45</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard"><div class="tc-top"><div class="av">TS</div><div><b>Client name</b><span>Executive · 47</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article><article class="tcard"><div class="tc-top"><div class="av">MB</div><div><b>Client name</b><span>Surgeon · 41</span></div></div><div class="stars">★★★★★</div><p class="tc-txt"><span class="phx">Placeholder review.</span> Paste his review here in his own words: where he was before, what changed while working with Victoria, and where he is now. Two to five sentences reads best. Longer reviews are cut here and open with “show more”.</p><button class="more" type="button">show more</button><div class="tc-date">Date</div></article></div>
       <button class="tnav next" type="button" aria-label="Next">→</button>
     </div>
     <div class="wrap" style="text-align:center;margin-top:44px">
@@ -790,7 +829,7 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
       <div class="faq reveal">
         <details><summary>Is this confidential?</summary><p>Yes, fully. Nothing you share is ever published, posted or discussed outside your sessions. Many of my clients are public-facing; discretion is part of the work.</p></details>
         <details><summary>Where do sessions happen?</summary><p>On private 1:1 video calls, wherever you are in the world.</p></details>
-        <details><summary>How do I start?</summary><p>Apply below. If your application is a fit, you'll book a 30-minute call with Chloe, my Client Director. She'll look at your situation and tell you straight whether my coaching is right for you. If it is, you start working with me personally.</p></details>
+        <details><summary>How do I start?</summary><p>Apply below. It takes about 2 minutes. If your application is a fit, you'll book a private 30-minute call where we look at your situation and the right format for you.</p></details>
         <details><summary>What does it cost?</summary><p>It depends on the format that fits your case, so it's covered on the call. No surprises, no pressure.</p></details>
         <details><summary>Is this pickup or “game”?</summary><p>No. No lines, no tricks, no manipulation. You'll learn to be clear, read women accurately and lead like the man you already are at work.</p></details>
       </div>
@@ -813,93 +852,86 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
   <section class="page"><div class="wrap narrow">
     <div class="eyebrow">Application · Private coaching</div>
     <h1>Let's see if<br>you're a fit.</h1>
-    <p class="lead">Answer honestly. The more specific you are, the more useful your call will be. Everything here stays confidential.</p>
-    <div class="progress"><i id="bar"></i></div>
-    <div class="ptext" id="ptext">0 of 11 answered</div>
+    <p class="lead">10 quick questions, one at a time. About 2 minutes. Everything here stays confidential.</p>
+    <div class="stepper">
+      <div class="st-top"><span id="stCount">Question 1 of 10</span><span id="stPct">0%</span></div>
+      <div class="progress"><i id="bar"></i></div>
+    </div>
 
     <form id="appForm" novalidate>
-      <div class="q" data-req="radio" data-name="situation">
-        <span class="num">01</span><div class="ql">What's your current dating situation?</div>
-        <div class="choices">
-          <label class="choice"><input type="radio" name="situation" value="No dates"><span>No dates</span></label>
-          <label class="choice"><input type="radio" name="situation" value="Dates that go nowhere"><span>Dates that go nowhere</span></label>
-          <label class="choice"><input type="radio" name="situation" value="Dating, but not the women I want"><span>Dating, but not the women I want</span></label>
-          <label class="choice"><input type="radio" name="situation" value="In a situationship"><span>In a situationship</span></label>
-        </div>
+      <div class="q on" data-req="field">
+        <label for="situation" class="ql">What's your dating situation right now?</label>
+        <select id="situation" name="situation" data-auto><option value="">Choose one…</option><option>No dates</option><option>Dates that go nowhere</option><option>Dating, but not the women I want</option><option>In a situationship</option><option>Just out of a long relationship</option></select>
         <div class="err">Pick the one closest to where you are.</div>
       </div>
 
       <div class="q" data-req="field">
-        <span class="num">02</span><label for="howlong">How long has it been like this?</label>
-        <select id="howlong" name="howlong"><option value="">Select…</option><option>Less than 6 months</option><option>6–12 months</option><option>1–3 years</option><option>More than 3 years</option></select>
+        <label for="howlong" class="ql">How long has it been like this?</label>
+        <select id="howlong" name="howlong" data-auto><option value="">Choose one…</option><option>Less than 6 months</option><option>6–12 months</option><option>1–3 years</option><option>More than 3 years</option></select>
         <div class="err">Please choose one.</div>
       </div>
 
       <div class="q" data-req="field">
-        <span class="num">03</span><label for="tried">What have you already tried?</label>
-        <div class="hint">Apps, matchmakers, courses, YouTube, therapy, friends setting you up…</div>
-        <textarea id="tried" name="tried"></textarea>
-        <div class="err">A short answer is fine.</div>
-      </div>
-
-      <div class="q" data-req="field">
-        <span class="num">04</span><label for="outcome">The one outcome you want in the next 90 days</label>
-        <input type="text" id="outcome" name="outcome" placeholder="e.g. Be in a relationship with a woman I'm genuinely excited about">
+        <label for="outcome" class="ql">What's the one outcome you want in the next 90 days?</label>
+        <input type="text" id="outcome" name="outcome" placeholder="e.g. A relationship with a woman I'm genuinely excited about">
         <div class="err">Tell us what success looks like.</div>
       </div>
 
       <div class="q" data-req="two">
-        <span class="num">05</span><div class="ql">Age and city</div>
-        <div class="two"><input type="number" name="age" placeholder="Age" min="18" max="99" aria-label="Age"><input type="text" name="city" placeholder="City" aria-label="City"></div>
+        <div class="ql">How old are you, and where do you live?</div>
+        <div class="two"><input type="number" name="age" placeholder="Age" min="18" max="99" aria-label="Age" inputmode="numeric"><input type="text" name="city" placeholder="City" aria-label="City"></div>
         <div class="err">Both, please.</div>
       </div>
 
       <div class="q" data-req="field">
-        <span class="num">06</span><label for="work">What do you do?</label>
+        <label for="work" class="ql">What do you do for work?</label>
         <input type="text" id="work" name="work" placeholder="Role, industry">
         <div class="err">Please fill this in.</div>
       </div>
 
       <div class="q" data-req="field">
-        <span class="num">07</span><label for="cost">What is staying single costing you?</label>
-        <div class="hint">Be honest. Nobody sees this but our team.</div>
+        <label for="cost" class="ql">What is staying single costing you?</label>
+        <div class="hint">Be honest. Only Victoria's team sees this.</div>
         <textarea id="cost" name="cost"></textarea>
-        <div class="err">This one matters. A few words is enough.</div>
+        <div class="err">A few words is enough.</div>
       </div>
 
       <div class="q" data-req="radio" data-name="urgency">
-        <span class="num">08</span><div class="ql">How urgent is this for you right now?</div>
+        <div class="ql">How invested are you in fixing your dating life right now?</div>
         <div class="scale" id="scale"></div>
-        <div class="scale-ends"><span>1 · Someday</span><span>10 · Now</span></div>
+        <div class="scale-ends"><span>1 · Just curious</span><span>10 · All in</span></div>
         <div class="err">Pick a number.</div>
       </div>
 
       <div class="q" data-req="radio" data-name="ready">
-        <span class="num">09</span><div class="ql">If it's a fit, are you ready to invest in private coaching?</div>
+        <div class="ql">If it's a fit, are you ready to invest in private coaching?</div>
         <div class="choices" style="grid-template-columns:1fr">
           <label class="choice"><input type="radio" name="ready" value="yes"><span>Yes</span></label>
-          <label class="choice"><input type="radio" name="ready" value="think"><span>I need to think about the amount</span></label>
+          <label class="choice"><input type="radio" name="ready" value="think"><span>I'd need to think about the amount</span></label>
           <label class="choice"><input type="radio" name="ready" value="no"><span>Not right now</span></label>
         </div>
         <div class="err">Please choose one.</div>
       </div>
 
       <div class="q" data-req="email">
-        <span class="num">10</span><label for="email">Email</label>
+        <label for="email" class="ql">Where should we send your booking details?</label>
         <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email">
         <div class="err">Enter a valid email.</div>
       </div>
 
       <div class="q" data-req="field">
-        <span class="num">11</span><label for="phone">Phone</label>
+        <label for="phone" class="ql">And your phone number?</label>
+        <div class="hint">Only used to confirm your call.</div>
         <input type="tel" id="phone" name="phone" placeholder="+1 (___) ___-____" autocomplete="tel">
         <div class="err">Enter your phone number.</div>
       </div>
 
-      <div class="privacy"><span class="lock">🔒</span><div><b>Private by default.</b> Your answers are seen only by Victoria's team and used only to prepare your call. Never shared, never published.</div></div>
-      <div class="submit-row">
-        <button class="btn block" type="submit">Submit application <span class="ar">→</span></button>
+      <div class="st-nav">
+        <button type="button" class="st-back" id="stBack">← Back</button>
+        <button type="button" class="btn" id="stNext">Next <span class="ar">→</span></button>
+        <button type="submit" class="btn" id="stSubmit" hidden>Submit application <span class="ar">→</span></button>
       </div>
+      <div class="privacy"><span class="lock">🔒</span><div><b>Private by default.</b> Your answers are seen only by Victoria's team and used only to prepare your call. Never shared, never published.</div></div>
     </form>
     <button class="back" data-go="coaching">← Back</button>
   </div></section>
@@ -910,22 +942,7 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
   <section class="page"><div class="wrap narrow">
     <div class="eyebrow">Application received · Final step</div>
     <h1>Book your<br><span class="serif">private call.</span></h1>
-    <p class="lead">Pick a time for your private 30-minute call with Chloe, my Client Director.</p>
-
-    <div class="host">
-      <div class="photo" data-initial="C"><span>Chloe · photo</span></div>
-      <div>
-        <div class="role">Your call host · Client Director</div>
-        <h3>Meet Chloe</h3>
-        <p>Chloe leads every application call. She's my trusted right hand and knows exactly how I work and who I can help.</p>
-        <p>In 30 minutes she'll understand where you are and where you want to be, and give you a straight answer on whether my coaching is the right fit. If it isn't, she'll tell you that too.</p>
-        <p>If we work together, you'll work with me personally from your first session.</p>
-        <div class="isnot">
-          <div class="y"><b>This call is</b>A focused conversation about your situation, your goals and the right format for you.</div>
-          <div class="n"><b>This call is not</b>A coaching session, a call with Victoria, or a hard sell.</div>
-        </div>
-      </div>
-    </div>
+    <p class="lead">Pick a time that works for you. 30 minutes, private and confidential. We'll look at where you are, where you want to be, and whether my coaching is the right fit.</p>
 
     <div class="cal" id="cal">
       <div class="cal-head"><b>Pick a time</b><span class="small" id="tz"></span></div>
@@ -948,7 +965,7 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
     <div class="when" id="whenText">Your call time</div>
     <p class="small">30 minutes · Video call · Confidential. The link is in your confirmation email.</p>
     <div class="btnrow">
-      <a class="btn ghost" id="gcal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Private%20call%20with%20Chloe%20(Client%20Director)">+ Google Calendar</a>
+      <a class="btn ghost" id="gcal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Private%20call%20%E2%80%94%20Victoria%20Savitskiy">+ Google Calendar</a>
       <button class="btn ghost" type="button" onclick="this.textContent='Apple / Outlook (.ics) — wire up in booking tool'">+ Apple / Outlook</button>
     </div>
 
@@ -961,24 +978,11 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
       </div>
     </div>
 
-    <div class="host">
-      <div class="photo" data-initial="C"><span>Chloe · photo</span></div>
-      <div>
-        <div class="role">Who you'll meet · Client Director</div>
-        <h3>Chloe</h3>
-        <p>Chloe will walk through your application with you, ask a few questions, and tell you straight whether Victoria's coaching is the right fit, and which format makes sense.</p>
-        <div class="isnot">
-          <div class="y"><b>This call is</b>A focused, confidential conversation about you and your goals.</div>
-          <div class="n"><b>This call is not</b>A coaching session or a call with Victoria. If you start, you'll work with Victoria personally.</div>
-        </div>
-      </div>
-    </div>
-
     <div class="eyebrow" style="margin-top:10px">Before the call</div>
     <div class="steps3">
       <div><b>01</b><p>Watch Victoria's short message above if you haven't yet.</p></div>
       <div><b>02</b><p>Be somewhere private, with camera on and 30 minutes clear.</p></div>
-      <div><b>03</b><p>Think about the one outcome you want most. Chloe will start there.</p></div>
+      <div><b>03</b><p>Think about the one outcome you want most. That's where we'll start.</p></div>
     </div>
   </div></section>
 </main>
@@ -1004,38 +1008,36 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
   <section class="page"><div class="wrap narrow">
     <div class="eyebrow">Internal · Funnel copy</div>
     <h1>Emails &amp; SMS</h1>
-    <p class="lead">Copy blocks for the booking tool. Not linked from the public pages. Plus: instant booking alert to the team so Lisa can send a personal message by hand.</p>
+    <p class="lead">Plain-text emails that read like Victoria wrote them herself (her name and photo as sender, no design). Copy blocks for the booking tool. Not linked from the public pages. Plus: instant booking alert to the team so Lisa can send a personal message by hand.</p>
 
-    <div class="mail"><div class="mh"><b>Email 1 · On booking</b><div>Subject: You're booked with Chloe, here's what to expect</div></div><div class="mb">Hi {first_name},
+    <div class="mail"><div class="mh"><b>Email 1 · On booking · plain text, from Victoria</b><div>Subject: you're booked</div></div><div class="mb">Hi {first_name},
 
-Your private call is confirmed for {date} at {time} ({timezone}).
+Victoria here. Your call is confirmed for {date} at {time} ({timezone}).
 
-You'll be meeting Chloe, Victoria's Client Director. [Chloe photo]
+I read every application myself, and I've read yours.
 
-Chloe leads every application call. In 30 minutes she'll look at where you are and where you want to be, and tell you straight whether Victoria's coaching is the right fit for you.
+On the call we'll look at where your dating life is right now, where you want it to be, and whether my coaching is the right fit. If it isn't, you'll hear that straight. No hard sell.
 
-To be clear: this isn't a coaching session and it isn't a call with Victoria. If you decide to start, you'll work with Victoria personally.
-
-Before the call:
-— Be somewhere private, camera on
-— Think about the one outcome you want most in the next 90 days
-
-Your link: {meeting_link}
-Need to reschedule? {reschedule_link}
-
-Everything you share stays confidential.
-
-Team Victoria</div></div>
-
-    <div class="mail"><div class="mh"><b>Email 2 · 1 hour before</b><div>Subject: Your call with Chloe starts in 1 hour</div></div><div class="mb">Hi {first_name},
-
-Quick reminder: your private call with Chloe starts at {time} ({timezone}).
+Two things before we talk:
+– Find somewhere private, camera on
+– Think about the one outcome you want most in the next 90 days
 
 Join here: {meeting_link}
+Need a different time? {reschedule_link}
 
-Find a quiet spot and have your camera on. See you soon.
+Everything you share stays between us.
 
-Team Victoria</div></div>
+Talk soon,
+Victoria</div></div>
+
+    <div class="mail"><div class="mh"><b>Email 2 · 1 hour before · plain text</b><div>Subject: see you in an hour</div></div><div class="mb">Hi {first_name},
+
+Quick reminder: we're talking at {time} ({timezone}).
+
+Here's the link: {meeting_link}
+
+See you soon,
+Victoria</div></div>
 
     <div class="mail"><div class="mh"><b>No-show · Email / SMS</b><div>One line</div></div><div class="mb">Hi {first_name}, we missed you today. Grab a new time here: {reschedule_link}</div></div>
 
@@ -1084,8 +1086,9 @@ Phone: {phone} · Email: {email}</div></div>
   var sc=document.getElementById("scale");
   for(var i=1;i<=10;i++){sc.insertAdjacentHTML("beforeend",'<label><input type="radio" name="urgency" value="'+i+'" aria-label="'+i+'"><span>'+i+'</span></label>')}
 
-  /* form */
-  var form=document.getElementById("appForm"),qs=[].slice.call(form.querySelectorAll(".q"));
+  /* form: one question per screen */
+  var form=document.getElementById("appForm"),qs=[].slice.call(form.querySelectorAll(".q")),cur=0;
+  var bNext=document.getElementById("stNext"),bSub=document.getElementById("stSubmit"),bBack=document.getElementById("stBack");
   function filled(q){
     var t=q.getAttribute("data-req");
     if(t==="radio")return !!form.querySelector('input[name="'+q.getAttribute("data-name")+'"]:checked');
@@ -1094,18 +1097,43 @@ Phone: {phone} · Email: {email}</div></div>
     if(t==="email")return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
     return !!v;
   }
-  function progress(){var n=qs.filter(filled).length;document.getElementById("bar").style.width=(n/qs.length*100)+"%";document.getElementById("ptext").textContent=n+" of "+qs.length+" answered";}
-  form.addEventListener("input",function(e){var q=e.target.closest(".q");if(q&&filled(q))q.classList.remove("bad");progress()});
-  form.addEventListener("change",progress);
+  function showQ(i,dir){
+    qs[cur].classList.remove("on","back");
+    cur=Math.max(0,Math.min(qs.length-1,i));
+    var q=qs[cur]; q.classList.toggle("back",dir<0); q.classList.add("on");
+    var last=cur===qs.length-1;
+    bNext.hidden=last; bSub.hidden=!last; bBack.style.visibility=cur?"visible":"hidden";
+    document.getElementById("stCount").textContent="Question "+(cur+1)+" of "+qs.length;
+    var pct=Math.round(cur/qs.length*100);
+    document.getElementById("stPct").textContent=pct+"%";
+    document.getElementById("bar").style.width=pct+"%";
+    var f=q.querySelector("select,input:not([type=radio]),textarea");
+    if(f&&window.matchMedia("(min-width:801px)").matches){setTimeout(function(){try{f.focus({preventScroll:true})}catch(e){}},60)}
+    var top=document.querySelector("#v-apply .stepper"); if(top&&top.getBoundingClientRect().top<0)top.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+  function next(){var q=qs[cur]; if(!filled(q)){q.classList.add("bad");return} q.classList.remove("bad"); if(cur<qs.length-1)showQ(cur+1,1)}
+  bNext.addEventListener("click",next);
+  bBack.addEventListener("click",function(){showQ(cur-1,-1)});
+  form.addEventListener("input",function(e){var q=e.target.closest(".q");if(q&&filled(q))q.classList.remove("bad")});
+  form.addEventListener("change",function(e){
+    var t=e.target;
+    if((t.matches("select[data-auto]")&&t.value)||t.type==="radio"){setTimeout(function(){if(qs[cur].contains(t)&&cur<qs.length-1)next()},280)}
+  });
+  form.addEventListener("keydown",function(e){
+    if(e.key==="Enter"&&e.target.tagName!=="TEXTAREA"&&e.target.type!=="submit"){
+      e.preventDefault(); if(cur<qs.length-1)next(); else form.requestSubmit?form.requestSubmit():bSub.click();
+    }
+  });
   form.addEventListener("submit",function(e){
     e.preventDefault();
-    var first=null; qs.forEach(function(q){var ok=filled(q);q.classList.toggle("bad",!ok);if(!ok&&!first)first=q});
-    if(first){first.scrollIntoView({behavior:"smooth",block:"center"});return}
+    for(var i=0;i<qs.length;i++){if(!filled(qs[i])){showQ(i,-1);qs[i].classList.add("bad");return}}
     var data={};new FormData(form).forEach(function(v,k){data[k]=v});
     try{sessionStorage.setItem("vs_app",JSON.stringify(data))}catch(err){}
     /* TODO: send `data` to CRM / webhook here */
+    document.getElementById("bar").style.width="100%";
     location.hash = data.ready==="no" ? "resources" : "book";
   });
+  showQ(0,1);
 
   /* demo calendar */
   var days=document.getElementById("days"),slots=document.getElementById("slots"),btn=document.getElementById("confirmBtn"),pick={};
