@@ -945,12 +945,8 @@ input:focus,textarea:focus,select:focus{outline:0;border-color:var(--acc);box-sh
     <p class="lead">Pick a time that works for you. 30 minutes, private and confidential. We'll look at where you are, where you want to be, and whether my coaching is the right fit.</p>
 
     <div class="cal" id="cal">
-      <div class="cal-head"><b>Pick a time</b><span class="small" id="tz"></span></div>
-      <div class="cal-body">
-        <div class="days" id="days"></div>
-        <div class="slots" id="slots"></div>
-      </div>
-      <div class="cal-foot"><button class="btn block" id="confirmBtn" disabled style="opacity:.45">Confirm call <span class="ar">→</span></button></div>
+      <div class="calendly-inline-widget" data-url="https://calendly.com/victoria-datecoach/30min" style="min-width:320px;height:700px;"></div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
     </div>
     <div class="finep"><span>30 minutes</span><span>Video call</span><span>Confidential</span></div>
   </div></section>
@@ -1129,25 +1125,20 @@ Phone: {phone} · Email: {email}</div></div>
     for(var i=0;i<qs.length;i++){if(!filled(qs[i])){showQ(i,-1);qs[i].classList.add("bad");return}}
     var data={};new FormData(form).forEach(function(v,k){data[k]=v});
     try{sessionStorage.setItem("vs_app",JSON.stringify(data))}catch(err){}
-    /* TODO: send `data` to CRM / webhook here */
+    fetch("https://script.google.com/macros/s/AKfycbxsLhAv3sCQKr3w0Li2IP0bFN1SkRpGpEoBRyOkctQrlwdqIgx1j0csgDT8Esy7lF6O/exec",{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(Object.assign({submitted_at:new Date().toISOString(),source:"victoriadatecoach.com"},data))}).catch(function(){});
     document.getElementById("bar").style.width="100%";
     location.hash = data.ready==="no" ? "resources" : "book";
   });
   showQ(0,1);
 
-  /* demo calendar */
-  var days=document.getElementById("days"),slots=document.getElementById("slots"),btn=document.getElementById("confirmBtn"),pick={};
-  try{document.getElementById("tz").textContent=Intl.DateTimeFormat().resolvedOptions().timeZone.replace("_"," ")}catch(e){}
-  var d=new Date(),made=0,times=["10:00 AM","11:30 AM","1:00 PM","3:30 PM","5:00 PM","6:30 PM"];
-  while(made<10){d.setDate(d.getDate()+1);if(d.getDay()===0||d.getDay()===6)continue;
-    var b=document.createElement("button");b.type="button";
-    b.innerHTML="<small>"+d.toLocaleDateString("en-US",{weekday:"short"})+"</small>"+d.toLocaleDateString("en-US",{month:"short",day:"numeric"});
-    b.dataset.label=d.toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric"});
-    days.appendChild(b);made++;}
-  function renderSlots(){slots.innerHTML="";times.forEach(function(t,i){if((i+pick.di)%3===2)return;var s=document.createElement("button");s.type="button";s.textContent=t;s.onclick=function(){[].forEach.call(slots.children,function(c){c.classList.remove("on")});s.classList.add("on");pick.time=t;btn.disabled=false;btn.style.opacity=1};slots.appendChild(s)})}
-  [].forEach.call(days.children,function(b,i){b.onclick=function(){[].forEach.call(days.children,function(c){c.classList.remove("on")});b.classList.add("on");pick={day:b.dataset.label,di:i};btn.disabled=true;btn.style.opacity=.45;renderSlots()}});
-  days.children[0].click();
-  btn.onclick=function(){document.getElementById("whenText").textContent=pick.day+" · "+pick.time;location.hash="confirmed"};
+  /* Calendly: show the picked time on the confirmation page, open it once booked */
+  window.addEventListener("message",function(e){
+    if(!e.data||!e.data.event)return;
+    if(e.data.event==="calendly.date_and_time_selected"&&e.data.payload&&e.data.payload.event&&e.data.payload.event.start_time){
+      try{var dt=new Date(e.data.payload.event.start_time);document.getElementById("whenText").textContent=dt.toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric"})+" · "+dt.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"})}catch(err){}
+    }
+    if(e.data.event==="calendly.event_scheduled"){location.hash="confirmed"}
+  });
 
 
   /* testimonials */
